@@ -2,8 +2,8 @@ import React from 'react'
 
 const Sponsor = () => {
   return (
-    <div>
-        <div class="max-w-3xl mx-auto px-5 my-28">
+    <div >
+        <div class=" dark:bg-gray-800 max-w-3xl mx-auto px-5 py-20">
     <div class="flex flex-col justify-center">
 
         <div class="text-center">
