@@ -2,8 +2,8 @@ import React from 'react'
 
 const Sponsor = () => {
   return (
-    <div >
-        <div class=" dark:bg-gray-800 max-w-3xl mx-auto px-5 py-20">
+    <div className='dark:bg-gray-800' >
+        <div class="max-w-3xl mx-auto px-5 py-20">
     <div class="flex flex-col justify-center">
 
         <div class="text-center">
@@ -20,7 +20,7 @@ const Sponsor = () => {
 
         <div class="flex flex-wrap items-center justify-center gap-10 mt-10 md:justify-around">
 
-            <div class="text-gray-400 "><svg xmlns="http://www.w3.org/2000/svg" width="120" height="60"
+            <div class="text-gray-400 relative dark:bg-gray-100 dark:rounded-md"><svg xmlns="http://www.w3.org/2000/svg" width="120" height="60"
                     fillRule="evenodd">
                     <g transform="matrix(.06928 0 0 .06928 7.367398 13.505331)" fill="none">
                         <circle r="50.167" cy="237.628" cx="269.529" fill="#00d8ff"></circle>
@@ -43,7 +43,7 @@ const Sponsor = () => {
             </div>
 
 
-            <div class="text-gray-400 "><svg width="82" height="40" viewBox="0 0 148 90" class="text-black ">
+            <div class="text-gray-400 dark:bg-gray-100 dark:rounded-md py-2.5 px-3"><svg width="82" height="40" viewBox="0 0 148 90" class="text-black ">
                     <path
                         d="M34.992 23.495h27.855v2.219H37.546v16.699h23.792v2.219H37.546v18.334h25.591v2.219H34.992v-41.69zm30.35 0h2.96l13.115 18.334 13.405-18.334L113.055.207 83.1 43.756l15.436 21.429H95.46L81.417 45.683 67.316 65.185h-3.018L79.85 43.756 65.343 23.495zm34.297 2.219v-2.219h31.742v2.219h-14.623v39.47h-2.554v-39.47H99.64zM.145 23.495h3.192l44.011 66.003L29.16 65.185 2.814 26.648l-.116 38.537H.145v-41.69zm130.98 38.801c-.523 0-.914-.405-.914-.928 0-.524.391-.929.913-.929.528 0 .913.405.913.929 0 .523-.385.928-.913.928zm2.508-2.443H135c.019.742.56 1.24 1.354 1.24.888 0 1.391-.535 1.391-1.539v-6.356h1.391v6.362c0 1.808-1.043 2.849-2.77 2.849-1.62 0-2.732-1.01-2.732-2.556zm7.322-.08h1.379c.118.853.95 1.395 2.149 1.395 1.117 0 1.937-.58 1.937-1.377 0-.685-.521-1.097-1.708-1.377l-1.155-.28c-1.62-.38-2.36-1.166-2.36-2.487 0-1.602 1.304-2.668 3.26-2.668 1.82 0 3.15 1.066 3.23 2.58h-1.354c-.13-.828-.85-1.346-1.894-1.346-1.1 0-1.832.53-1.832 1.34 0 .642.472 1.01 1.64 1.284l.987.243c1.838.43 2.596 1.178 2.596 2.53 0 1.72-1.33 2.799-3.453 2.799-1.987 0-3.323-1.029-3.422-2.637z"
                         fill="currentColor" fillRule="nonzero"></path>
@@ -51,7 +51,7 @@ const Sponsor = () => {
             </div>
 
 
-            <div class="text-gray-400 "><svg viewBox="0 0 248 31" class="w-auto h-5 text-slate-900 ">
+            <div class="text-gray-400 dark:bg-gray-100 dark:rounded-md py-2.5 px-1"><svg viewBox="0 0 248 31" class="w-auto h-5 text-slate-900 ">
                     <path fillRule="evenodd" clipRule="evenodd"
                         d="M25.517 0C18.712 0 14.46 3.382 12.758 10.146c2.552-3.382 5.529-4.65 8.931-3.805 1.941.482 3.329 1.882 4.864 3.432 2.502 2.524 5.398 5.445 11.722 5.445 6.804 0 11.057-3.382 12.758-10.145-2.551 3.382-5.528 4.65-8.93 3.804-1.942-.482-3.33-1.882-4.865-3.431C34.736 2.92 31.841 0 25.517 0zM12.758 15.218C5.954 15.218 1.701 18.6 0 25.364c2.552-3.382 5.529-4.65 8.93-3.805 1.942.482 3.33 1.882 4.865 3.432 2.502 2.524 5.397 5.445 11.722 5.445 6.804 0 11.057-3.381 12.758-10.145-2.552 3.382-5.529 4.65-8.931 3.805-1.941-.483-3.329-1.883-4.864-3.432-2.502-2.524-5.398-5.446-11.722-5.446z"
                         fill="#38bdf8"></path>
@@ -62,7 +62,7 @@ const Sponsor = () => {
             </div>
 
 
-            <div class="text-gray-400 ">
+            <div class="text-gray-400 dark:bg-gray-100 dark:rounded-md p-3">
                 <svg viewBox="0 0 105 22" fill="none" xmlns="http://www.w3.org/2000/svg" height="1em"
                     class="text-[#f03e2f]">
                     <title>Sanity</title>
