@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div>
+    <div className='dark:bg-gray-800'>
         <div class="px-2 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
   <div class="grid gap-6 row-gap-6 mb-8 sm:grid-cols-2 lg:grid-cols-4">
     <div class="sm:col-span-2">
@@ -13,33 +13,31 @@ const Footer = () => {
           <rect x="14" y="1" width="7" height="6"></rect>
           <rect x="14" y="11" width="7" height="12"></rect>
         </svg>
-        <span class="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">Campus Project</span>
+        <span class="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase dark:text-white">Campus Project</span>
       </a>
       <div class="mt-6 lg:max-w-sm">
-        <p class="text-sm text-gray-800">
+        <p class="text-sm text-gray-800 dark:text-white">
           Our passion for creating good event come here, we're ready to face another challange
         </p>
-        <p class="mt-4 text-sm text-gray-800">
+        <p class="mt-4 text-sm text-gray-800 dark:text-white">
          Join and collaborate with us!
         </p>
       </div>
     </div>
     <div class="space-y-2 text-sm">
-      <p class="text-base font-bold tracking-wide text-gray-900">Contacts</p>
+      <p class="text-base font-bold tracking-wide text-gray-900 dark:text-white">Contacts</p>
       <div class="flex">
-        <p class="mr-1 text-gray-800">Phone: +6285161401414</p>
-        <a href="tel:850-123-5021" aria-label="Our phone" title="Our phone" class="transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800">850-123-5021</a>
+        <p class="mr-1 text-gray-800 dark:text-white ">Phone: +6285161401414</p>
       </div>
       <div class="flex">
-        <p class="mr-1 text-gray-800">Email: daudmanuwu@gmail.com</p>
-        <a href="mailto:info@lorem.mail" aria-label="Our email" title="Our email" class="transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800">info@lorem.mail</a>
+        <p class="mr-1 text-gray-800 dark:text-white">Email: daudmanuwu@gmail.com</p>
       </div>
       <div class="flex">
-        <p class="mr-1 text-gray-800">Address: Disini heheh</p>
+        <p class="mr-1 text-gray-800 dark:text-white">Address: Disini heheh</p>
       </div>
     </div>
     <div>
-      <span class="text-base font-bold tracking-wide text-gray-900">Social</span>
+      <span class="text-base font-bold tracking-wide text-gray-900 dark:text-white">Social</span>
       <div class="flex items-center mt-1 space-x-3">
         <a href="/" class="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-400">
           <svg viewBox="0 0 24 24" fill="currentColor" class="h-5">
@@ -64,7 +62,7 @@ const Footer = () => {
           </svg>
         </a>
       </div>
-      <p class="mt-4 text-sm text-gray-500">
+      <p class="mt-4 text-sm text-gray-500 dark:text-white">
         Visit and keep uptodate with our media
       </p>
     </div>
