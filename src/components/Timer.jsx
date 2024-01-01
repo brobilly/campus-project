@@ -33,20 +33,20 @@ const Timer = () => {
     }, 1000);
   return (
     <div>
-    <div class=" max-w-full mx-auto bg-white shadow-lg overflow-hidden dark:bg-gray-800">
-        <div class="py-2 px-6">
-            <div class="flex flex-wrap gap-4 justify-center items-center">
-                <div class="border rounded-lg px-2 py-1">
-                    <div id="days" class=" dark:text-white font-light text-sm text-gray-800"></div>
+    <div className=" max-w-full mx-auto bg-white shadow-lg overflow-hidden dark:bg-gray-800">
+        <div className="py-2 px-6">
+            <div className="flex flex-wrap gap-4 justify-center items-center">
+                <div className="border rounded-lg px-2 py-1">
+                    <div id="days" className=" dark:text-white font-light text-sm text-gray-800"></div>
                 </div>
-                <div class="border rounded-lg px-2 py-1">
-                    <div id="hours" class=" dark:text-white font-light text-sm text-gray-800"></div>
+                <div className="border rounded-lg px-2 py-1">
+                    <div id="hours" className=" dark:text-white font-light text-sm text-gray-800"></div>
                 </div>
-                <div class="border rounded-lg px-2 py-1">
-                    <div id="minutes" class=" dark:text-white font-light text-sm text-gray-800"></div>
+                <div className="border rounded-lg px-2 py-1">
+                    <div id="minutes" className=" dark:text-white font-light text-sm text-gray-800"></div>
                 </div>
-                <div class="border rounded-lg px-2 py-1">
-                    <div id="seconds" class=" dark:text-white font-light text-sm text-gray-800"></div>
+                <div className="border rounded-lg px-2 py-1">
+                    <div id="seconds" className=" dark:text-white font-light text-sm text-gray-800"></div>
                 </div>
             </div>
         </div>
