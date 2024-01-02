@@ -4,7 +4,7 @@ import { PremiumSponsor,Navbar,Timer,Hero,
 const MainPage = () => {
   return (
     <div>
-        <PremiumSponsor/>
+        {/* <PremiumSponsor/> */}
         <Navbar/>
         <Timer/>
         <Hero/>
