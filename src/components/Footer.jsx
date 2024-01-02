@@ -1,5 +1,5 @@
 import React from 'react'
-
+import logo from '../assets/Image/logo-putih.png'
 const Footer = () => {
   return (
     <div className='dark:bg-gray-800'>
@@ -7,12 +7,10 @@ const Footer = () => {
   <div className="grid gap-6 row-gap-6 mb-8 sm:grid-cols-2 lg:grid-cols-4">
     <div className="sm:col-span-2">
       <a href="/" aria-label="Go home" title="Company" className="inline-flex items-center">
-        <svg className="w-8 text-deep-purple-accent-400" viewBox="0 0 24 24" strokeLinejoin="round" strokeWidth="2" strokeLinecap="round" strokeMiterlimit="10" stroke="currentColor" fill="none">
-          <rect x="3" y="1" width="7" height="12"></rect>
-          <rect x="3" y="17" width="7" height="6"></rect>
-          <rect x="14" y="1" width="7" height="6"></rect>
-          <rect x="14" y="11" width="7" height="12"></rect>
-        </svg>
+        <img 
+          src={logo} 
+          alt="logo"
+          className='w-16 h-16' />
         <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase dark:text-white">Campus Project</span>
       </a>
       <div className="mt-6 lg:max-w-sm">
