@@ -6,7 +6,7 @@ import Navbar from './Navbar'
 import PremiumSponsor from './PremiumSponsor'
 import Sponsor from './Sponsor'
 import Timer from './Timer'
-
+import FormInput from './FormInput'
 export{
     Footer,
     Gallery,
@@ -15,5 +15,6 @@ export{
     Navbar,
     PremiumSponsor,
     Sponsor,
-    Timer
+    Timer,
+    FormInput
 }
