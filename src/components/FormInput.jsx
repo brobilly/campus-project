@@ -2,10 +2,34 @@ import React, {useState} from 'react'
 
 const FormInput = () => {
     const [selectedGender, setSelectedGender] = useState('');
-
     const handleGenderChange = (event) => {
         setSelectedGender(event.target.value);
     };
+
+    const [name, setName] = useState('')
+    const [nik, setNik] = useState('')
+    const [number, setNumber] = useState('')
+    const [email, setEmail] = useState('')
+    
+    const ageVerif = () => {
+        const fullNik = nik.split('').map(Number);
+        const birthNik = fullNik.slice(10, 12);
+        const intNik = parseInt(birthNik.join(''));
+
+        const currentYearLastTwoDigits = new Date().getFullYear() % 100;
+        const centuryThreshold = 30;
+        const century = intNik <= currentYearLastTwoDigits + centuryThreshold ? 2000 : 1900;
+        const fullYear = century + intNik;
+        
+        return new Date().getFullYear() - fullYear > 18;
+
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        console.log(ageVerif());
+    }
   return (
     <div>
         <section className="bg-white p-5 dark:bg-gray-800">
@@ -23,10 +47,16 @@ const FormInput = () => {
                     Let’s get you all set up so you can verify your personal account and begin setting up your profile.
                 </p>
 
-                <form className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
+                <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
                     <div>
                         <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Full Name</label>
-                        <input type="text" placeholder="Aglio Daud Manuwo" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                        <input 
+                          type="text" 
+                          placeholder="Aglio Daud Manuwo" 
+                          className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                        />
                     </div>
 
                     <div>
@@ -35,6 +65,8 @@ const FormInput = () => {
                           type="Number" 
                           placeholder="16 Digit ID" 
                           className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                          value={nik}
+                          onChange={(e) => setNik(e.target.value)}
                         />
                     </div>
 
@@ -48,13 +80,21 @@ const FormInput = () => {
                           placeholder="812345678910"
                           autoComplete="off"
                           className="block w-full px-5 py-3 pl-14 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring-opacity-40 focus:ring-2"
+                          value={number}
+                          onChange={(e) => setNumber(e.target.value)}
                        />
                     </div>
                     </div>
 
                     <div>
                         <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Email</label>
-                        <input type="email" placeholder="daudmanuwu@example.com" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                        <input 
+                          type="email" 
+                          placeholder="daudmanuwu@example.com" 
+                          className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                        />
                     </div>
 
                     <div>
@@ -76,7 +116,7 @@ const FormInput = () => {
                         <input type="Number" placeholder="8 Digit reff" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                     </div>
 
-                    <button
+                    <button type='submit'
                         className="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                         <span> Sign Me </span>
 
