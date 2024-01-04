@@ -10,25 +10,20 @@ const FormInput = () => {
     const [nik, setNik] = useState('')
     const [number, setNumber] = useState('')
     const [email, setEmail] = useState('')
-    
+
     const ageVerif = () => {
         const fullNik = nik.split('').map(Number);
         const birthNik = fullNik.slice(10, 12);
         const intNik = parseInt(birthNik.join(''));
 
-        const currentYearLastTwoDigits = new Date().getFullYear() % 100;
-        const centuryThreshold = 30;
-        const century = intNik <= currentYearLastTwoDigits + centuryThreshold ? 2000 : 1900;
-        const fullYear = century + intNik;
-        
-        return new Date().getFullYear() - fullYear > 18;
-
+        return intNik > 40 || intNik < 4;
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        console.log(ageVerif());
+        if(!ageVerif()){
+            alert('haiyaaaa so young');
+        } 
     }
   return (
     <div>

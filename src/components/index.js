@@ -7,6 +7,7 @@ import PremiumSponsor from './PremiumSponsor'
 import Sponsor from './Sponsor'
 import Timer from './Timer'
 import FormInput from './FormInput'
+import QRScanner from './QRScanner'
 export{
     Footer,
     Gallery,
@@ -16,5 +17,6 @@ export{
     PremiumSponsor,
     Sponsor,
     Timer,
-    FormInput
+    FormInput,
+    QRScanner
 }
