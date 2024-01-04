@@ -10,7 +10,7 @@ const QRScanner = () => {
 
     const handleScan = (data) => {
         if (data) {
-            setResult(data);
+            setResult(data.text);
         }
     }
 
@@ -19,12 +19,12 @@ const QRScanner = () => {
             <QrReader
                 delay={300}
                 onError={handleError}
-                onScan={handleScan}
+                onResult={handleScan}
                 style={{ width: '100%'}}
                 legacyMode
-                facingMode="environment"
+                facingMode='environment'
             />
-            <h3>RESULT: {result}</h3>
+            <h3>{result}</h3>
         </div>
     )
 
