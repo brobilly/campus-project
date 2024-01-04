@@ -14,9 +14,7 @@ const QRScanner = () => {
             fps: 2,
         })
     
-    
         const success = (data) => {
-            scanner.clear();
             setResult(data);
         }
     
@@ -27,11 +25,16 @@ const QRScanner = () => {
         scanner.render(success, error)
     },[])
     
+    const qrdata = result;
 
     return (
+    <div>
         <div id='reader'>
-            {result}
         </div>
+        <div>
+        {qrdata}
+        </div>
+    </div>
     )
 
 }
