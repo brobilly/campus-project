@@ -22,7 +22,7 @@ const QRScanner = () => {
                 onResult={handleScan}
                 style={{ width: '100%'}}
                 legacyMode
-                facingMode='environment'
+                facingMode={'environment'}
             />
             <h3>{result}</h3>
         </div>
