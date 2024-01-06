@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import QRCode from 'react-qr-code'
 
 const FormInput = () => {
     const [selectedGender, setSelectedGender] = useState('');
@@ -10,6 +11,9 @@ const FormInput = () => {
     const [nik, setNik] = useState('')
     const [number, setNumber] = useState('')
     const [email, setEmail] = useState('')
+    const [reff, setReff] = useState('')
+
+    const [qrcode, setQrcode] = useState('')
 
     const ageVerif = () => {
         const fullNik = nik.split('').map(Number);
@@ -21,8 +25,11 @@ const FormInput = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(!ageVerif()){
+        if(!ageVerif() && nik){
             alert('haiyaaaa so young');
+        }
+        if(nik){
+        setQrcode(true);
         } 
     }
   return (
@@ -51,6 +58,7 @@ const FormInput = () => {
                           className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                           value={name}
                           onChange={(e) => setName(e.target.value)}
+                          required
                         />
                     </div>
 
@@ -62,6 +70,7 @@ const FormInput = () => {
                           className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                           value={nik}
                           onChange={(e) => setNik(e.target.value)}
+                          required
                         />
                     </div>
 
@@ -77,6 +86,7 @@ const FormInput = () => {
                           className="block w-full px-5 py-3 pl-14 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring-opacity-40 focus:ring-2"
                           value={number}
                           onChange={(e) => setNumber(e.target.value)}
+                          required
                        />
                     </div>
                     </div>
@@ -89,12 +99,14 @@ const FormInput = () => {
                           className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
+                          required
                         />
                     </div>
 
                     <div>
                         <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Gender</label>
-                        <select
+                        <select 
+                            required
                             name="gender"
                             value={selectedGender}
                             onChange={handleGenderChange}
@@ -108,7 +120,13 @@ const FormInput = () => {
 
                     <div>
                         <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Reff (opsional)</label>
-                        <input type="Number" placeholder="8 Digit reff" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                        <input 
+                            type="Number" 
+                            placeholder="8 Digit reff" 
+                            className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" 
+                            value={reff}
+                            onChange={(e) => setReff(e.target.value)}    
+                        />
                     </div>
 
                     <button type='submit'
@@ -121,10 +139,20 @@ const FormInput = () => {
                                 clipRule="evenodd" />
                         </svg>
                     </button>
+
                 </form>
             </div>
         </div>
     </div>
+
+    {qrcode && (
+        <div className='flex justify-center'>
+            <div className='bg-white p-4 mr-16'>
+                <QRCode value={nik} />
+            </div>
+        </div>
+    )}
+
 </section>
     </div>
   )
