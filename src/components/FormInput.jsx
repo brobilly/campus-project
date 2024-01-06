@@ -1,12 +1,14 @@
-import React, {useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import QRCode from 'react-qr-code'
+import DomToImage from 'dom-to-image';
 
 const FormInput = () => {
+
+    {/* ACCEPT FORM INPUT */}
     const [selectedGender, setSelectedGender] = useState('');
     const handleGenderChange = (event) => {
         setSelectedGender(event.target.value);
     };
-
     const [name, setName] = useState('')
     const [nik, setNik] = useState('')
     const [number, setNumber] = useState('')
@@ -15,6 +17,31 @@ const FormInput = () => {
 
     const [qrcode, setQrcode] = useState('')
 
+    {/* CONVERT QRCODE->IMAGE->BASE64 */}
+    const qrcodeRef = useRef();
+    const [qrcode64, setQrcode64] = useState('')
+    const convertQr = async () => {
+        try {
+          const data = await DomToImage.toJpeg(qrcodeRef.current);
+          setQrcode64(data);
+          console.log({ qrcode64 });
+        } catch (error) {
+          console.error('Error converting QR code:', error);
+        }
+      };
+
+    {/* JSON-ing */}
+    const convertJson = () =>{
+        const formData = { 
+            To: email,
+            Name: name,
+            QRImage: qrcode64,
+        }
+        const jsonData = JSON.stringify(formData);
+        return jsonData;
+    }
+
+    {/* AGE VERIFICATION USING NIK */}
     const ageVerif = () => {
         const fullNik = nik.split('').map(Number);
         const birthNik = fullNik.slice(10, 12);
@@ -27,11 +54,12 @@ const FormInput = () => {
         e.preventDefault();
         if(!ageVerif() && nik){
             alert('haiyaaaa so young');
-        }
-        if(nik){
+        }else{
         setQrcode(true);
-        } 
+        convertQr();
+        }
     }
+
   return (
     <div>
         <section className="bg-white p-5 dark:bg-gray-800">
@@ -147,7 +175,7 @@ const FormInput = () => {
 
     {qrcode && (
         <div className='flex justify-center'>
-            <div className='bg-white p-4 mr-16'>
+            <div ref={qrcodeRef} className='bg-white p-4 mr-16'>
                 <QRCode value={nik} />
             </div>
         </div>
