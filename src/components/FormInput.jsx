@@ -1,11 +1,65 @@
-import React, {useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
+import QRCode from 'react-qr-code'
+import DomToImage from 'dom-to-image';
 
 const FormInput = () => {
-    const [selectedGender, setSelectedGender] = useState('');
 
+    {/* ACCEPT FORM INPUT */}
+    const [selectedGender, setSelectedGender] = useState('');
     const handleGenderChange = (event) => {
         setSelectedGender(event.target.value);
     };
+    const [name, setName] = useState('')
+    const [nik, setNik] = useState('')
+    const [number, setNumber] = useState('')
+    const [email, setEmail] = useState('')
+    const [reff, setReff] = useState('')
+
+    const [qrcode, setQrcode] = useState('')
+
+    {/* CONVERT QRCODE->IMAGE->BASE64 */}
+    const qrcodeRef = useRef();
+    const [qrcode64, setQrcode64] = useState('')
+    const convertQr = async () => {
+        try {
+          const data = await DomToImage.toJpeg(qrcodeRef.current);
+          setQrcode64(data);
+          console.log({ qrcode64 });
+        } catch (error) {
+          console.error('Error converting QR code:', error);
+        }
+      };
+
+    {/* JSON-ing */}
+    const convertJson = () =>{
+        const formData = { 
+            To: email,
+            Name: name,
+            QRImage: qrcode64,
+        }
+        const jsonData = JSON.stringify(formData);
+        return jsonData;
+    }
+
+    {/* AGE VERIFICATION USING NIK */}
+    const ageVerif = () => {
+        const fullNik = nik.split('').map(Number);
+        const birthNik = fullNik.slice(10, 12);
+        const intNik = parseInt(birthNik.join(''));
+
+        return intNik > 40 || intNik < 4;
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if(!ageVerif() && nik){
+            alert('haiyaaaa so young');
+        }else{
+        setQrcode(true);
+        convertQr();
+        }
+    }
+
   return (
     <div>
         <section className="bg-white p-5 dark:bg-gray-800">
@@ -23,10 +77,17 @@ const FormInput = () => {
                     Let’s get you all set up so you can verify your personal account and begin setting up your profile.
                 </p>
 
-                <form className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
+                <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
                     <div>
                         <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Full Name</label>
-                        <input type="text" placeholder="Aglio Daud Manuwo" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                        <input 
+                          type="text" 
+                          placeholder="Aglio Daud Manuwo" 
+                          className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                          required
+                        />
                     </div>
 
                     <div>
@@ -35,6 +96,9 @@ const FormInput = () => {
                           type="Number" 
                           placeholder="16 Digit ID" 
                           className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                          value={nik}
+                          onChange={(e) => setNik(e.target.value)}
+                          required
                         />
                     </div>
 
@@ -48,18 +112,29 @@ const FormInput = () => {
                           placeholder="812345678910"
                           autoComplete="off"
                           className="block w-full px-5 py-3 pl-14 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring-opacity-40 focus:ring-2"
+                          value={number}
+                          onChange={(e) => setNumber(e.target.value)}
+                          required
                        />
                     </div>
                     </div>
 
                     <div>
                         <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Email</label>
-                        <input type="email" placeholder="daudmanuwu@example.com" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                        <input 
+                          type="email" 
+                          placeholder="daudmanuwu@example.com" 
+                          className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          required
+                        />
                     </div>
 
                     <div>
                         <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Gender</label>
-                        <select
+                        <select 
+                            required
                             name="gender"
                             value={selectedGender}
                             onChange={handleGenderChange}
@@ -73,10 +148,16 @@ const FormInput = () => {
 
                     <div>
                         <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Reff (opsional)</label>
-                        <input type="Number" placeholder="8 Digit reff" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                        <input 
+                            type="Number" 
+                            placeholder="8 Digit reff" 
+                            className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" 
+                            value={reff}
+                            onChange={(e) => setReff(e.target.value)}    
+                        />
                     </div>
 
-                    <button
+                    <button type='submit'
                         className="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                         <span> Sign Me </span>
 
@@ -86,10 +167,20 @@ const FormInput = () => {
                                 clipRule="evenodd" />
                         </svg>
                     </button>
+
                 </form>
             </div>
         </div>
     </div>
+
+    {qrcode && (
+        <div className='flex justify-center'>
+            <div ref={qrcodeRef} className='bg-white p-4 mr-16'>
+                <QRCode value={nik} />
+            </div>
+        </div>
+    )}
+
 </section>
     </div>
   )
