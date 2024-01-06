@@ -17,14 +17,13 @@ const FormInput = () => {
   const qrcode64Ref = useRef();
   const [qrcode64, setQrcode64] = useState('');
 
-  const convertQr = () => {
-    DomToImage.toJpeg(qrcode64Ref.current)
-      .then((data) => {
-        setQrcode64(data);
-    })
-    .catch((error) => {
+  const convertQr = async () => {
+    try {
+      const data = await DomToImage.toJpeg(qrcode64Ref.current);
+      setQrcode64(data);
+    } catch (error) {
         console.error('Error converting QR code:', error);
-    });
+    }
 };
 console.log(qrcode64);
 
@@ -58,6 +57,19 @@ console.log(qrcode64);
   return (
     <div>
       <section className="bg-white p-5 dark:bg-gray-800">
+      <div className="flex justify-center items-center max-h-screen">
+        <div className="hidden bg-cover h-100 rounded-lg lg:block lg:w-2/5" style={{backgroundImage: "url('https://i0.wp.com/guiden.id/wp-content/uploads/2021/09/image-62.png?fit=722%2C674&ssl=1')"}}>
+        </div>
+
+        <div className="flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5">
+            <div className="w-full">
+                <h1 className="text-2xl font-semibold tracking-wider text-gray-800 capitalize dark:text-white">
+                    RSVP NOW!
+                </h1>
+
+                <p className="mt-4 text-gray-500 dark:text-gray-400">
+                    Let’s get you all set up so you can verify your personal account and begin setting up your profile.
+                </p>
         <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
           <div>
             <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Full Name</label>
@@ -139,6 +151,7 @@ console.log(qrcode64);
             />
           </div>
 
+
           <button
             type="submit"
             className="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
@@ -149,6 +162,14 @@ console.log(qrcode64);
             </svg>
           </button>
         </form>
+        </div>
+        </div>
+        </div>
+          <div>
+            <div className=" p-4" ref={qrcode64Ref}>
+              <QRCode value={nik} />
+            </div>
+          </div>
       </section>
     </div>
   );
