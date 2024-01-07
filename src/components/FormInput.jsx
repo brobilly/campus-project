@@ -166,7 +166,7 @@ console.log(qrcode64);
         </div>
         </div>
           <div>
-            <div className=" p-4" ref={qrcode64Ref}>
+            <div className="bg-white p-4 w-72 mx-auto" ref={qrcode64Ref}>
               <QRCode value={nik} />
             </div>
           </div>

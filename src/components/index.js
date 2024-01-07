@@ -8,6 +8,8 @@ import Sponsor from './Sponsor'
 import Timer from './Timer'
 import FormInput from './FormInput'
 import QRScanner from './QRScanner'
+import RequireAuth from './RequireAuth'
+import LoginForm from './LoginForm'
 export{
     Footer,
     Gallery,
@@ -18,5 +20,7 @@ export{
     Sponsor,
     Timer,
     FormInput,
-    QRScanner
+    QRScanner,
+    RequireAuth,
+    LoginForm
 }
