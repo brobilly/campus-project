@@ -9,7 +9,7 @@ const LoginInput = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  const apiUrl = `${import.meta.env.VITE_API_URL}/login`;
+  const apiUrl = `${import.meta.env.VITE_API_URL}/admlog`;
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -17,10 +17,11 @@ const LoginInput = () => {
     try {
       const response = await axios.post(apiUrl, { email, password });
       const userToken = response.data.cookie.value;
-      const userName = response.data.user.uname;
-      const userId = response.data.user.id;
-      login(userToken, userName, userId); 
-      navigate('/dashboard'); 
+      const name = response.data.admin.name;
+      const userId = response.data.admin.id;
+      login(userToken, name, userId); 
+      navigate('/qrscan'); 
+      console.log(response)
     } catch (error) {
       console.error(error);
     }
@@ -32,7 +33,7 @@ const LoginInput = () => {
               <div className="relative mb-6" data-te-input-wrapper-init>
                 <input
                   type="email"
-                  className=" text-black peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                  className=" text-black peer block min-h-[auto] bg-gray-800 w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                   id="exampleInputEmail2"
                   aria-describedby="emailHelp"
                   placeholder="Enter email"
@@ -49,7 +50,7 @@ const LoginInput = () => {
               <div className="relative mb-6" data-te-input-wrapper-init>
                 <input
                   type="password"
-                  className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                  className="peer block min-h-[auto] w-full bg-gray-800 rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                   id="exampleInputPassword2"
                   placeholder="Password"
                   value={password}

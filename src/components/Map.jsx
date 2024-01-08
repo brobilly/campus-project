@@ -11,7 +11,7 @@ const Map = () => {
         <div className="mt-16 lg:mt-20">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="rounded-lg overflow-hidden">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63372.49394962163!2d107.54841082167967!3d-6.916781300000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e78f32be9b51%3A0xc824bf9f9585567a!2sMakmur%20Bahagia!5e0!3m2!1sen!2sid!4v1703821043670!5m2!1sen!2sid" width="600" height="450" allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1980.460404452065!2d107.60947055562328!3d-6.900074299999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e7d71cdfd9c3%3A0x7357760303676c13!2sWU%20Backroom%20Bar!5e0!3m2!1sen!2sid!4v1704625123278!5m2!1sen!2sid" width="600" height="450" className='border-0' allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <div>
                     <div className="max-w-full mx-auto rounded-lg overflow-hidden">

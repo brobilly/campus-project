@@ -1,5 +1,5 @@
 import React from 'react'
-
+import GS from '../assets/Image/GS-1.jpg'
 const Hero = () => {
   return (
     <div className='dark:bg-gray-800'>
@@ -16,7 +16,7 @@ const Hero = () => {
             </div>
 
             <div className="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2">
-                <img className="w-full h-full rounded-lg lg:max-w-3xl" src="https://img.freepik.com/free-vector/happy-tiny-business-people-dancing-having-fun-drinking-wine-corporate-party-team-building-activity-corporate-event-idea-concept-pinkish-coral-bluevector-isolated-illustration_335657-1414.jpg?w=1800&t=st=1703819846~exp=1703820446~hmac=6ad753bffcb54314e1d736d50ef15750d9a1af23d59891d6c8f266a96ad7333b" alt="Catalogue-pana.svg"/>
+                <img className="w-full h-full rounded-lg lg:max-w-3xl" src={GS} alt="Catalogue-pana.svg"/>
             </div>
         </div>
     </div>
