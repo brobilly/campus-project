@@ -10,10 +10,8 @@ const LoginInput = () => {
   const { login } = useAuth();
 
   const apiUrl = `${import.meta.env.VITE_API_URL}/admlog`;
-
   const handleLogin = async (e) => {
     e.preventDefault();
-
     try {
       const response = await axios.post(apiUrl, { email, password });
       const userToken = response.data.cookie.value;
