@@ -1,72 +1,79 @@
 import React, { useRef, useState } from 'react';
 import QRCode from 'react-qr-code';
 import DomToImage from 'dom-to-image';
-
+import axios from 'axios';
+ 
 const FormInput = () => {
-  const [selectedGender, setSelectedGender] = useState('');
+  const [gender, setGender] = useState('');
   const handleGenderChange = (event) => {
-    setSelectedGender(event.target.value);
+    setGender(event.target.value);
   };
-
+ 
   const [name, setName] = useState('');
-  const [nik, setNik] = useState('');
-  const [number, setNumber] = useState('');
+  const [id, setId] = useState('');
+  const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [reff, setReff] = useState('');
-
+ 
+ 
   const qrcode64Ref = useRef();
-  const [qrcode64, setQrcode64] = useState('');
-
-  const convertQr = async () => {
-    try {
-      const data = await DomToImage.toJpeg(qrcode64Ref.current);
-      setQrcode64(data);
-    } catch (error) {
-        console.error('Error converting QR code:', error);
-    }
-};
-console.log(qrcode64);
-
-  const convertJson = () => {
-    const formData = {
-      To: email,
-      Name: name,
-      QRImage: qrcode64,
-    };
-    const jsonData = JSON.stringify(formData);
-    return jsonData;
-  };
-
+  // const [qrcode64, setQrcode64] = useState('');
+//   const convertQr = async () => {
+//     try {
+//       const dataTemp = await DomToImage.toJpeg(qrcode64Ref.current);
+//       const data = dataTemp.split(",")[1];
+//       console.log(data)
+//       setQrcode64(data);
+//     } catch (error) {
+//         console.error('Error converting QR code:', error);
+//     }
+// };
+  // const qr_image = qrcode64;
+  const nik = parseInt(id);
+ 
   const ageVerif = () => {
-    const fullNik = nik.split('').map(Number);
-    const birthNik = fullNik.slice(10, 12);
-    const intNik = parseInt(birthNik.join(''));
-
-    return intNik > 40 || intNik < 4;
+    const fullId = id.split('').map(Number);
+    const birthId = fullId.slice(10, 12);
+    const intId = parseInt(birthId.join(''));
+ 
+    return intId > 40 || intId < 4;
   };
-
-  const handleSubmit = (e) => {
+ 
+  const apiUrl = `${import.meta.env.VITE_API_URL}/rsvp`;
+  // console.log(qr_image)
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!ageVerif() && nik) {
+    if (!ageVerif() && id) {
       alert('haiyaaaa so young');
     } else {
-      convertQr();
+      // convertQr();
+      try{
+        const dataTemp = await DomToImage.toJpeg(qrcode64Ref.current);
+        const data = dataTemp.split(",")[1];
+        console.log(data);
+ 
+        const response = await axios.post(apiUrl, {"id" : nik , name, phone, email, gender, reff, "qr_image" : data});
+        console.log(response.data)
+      }catch(err){
+        console.error("Error is:",err);
+        console.log(err.config.data)
+      }
     }
   };
-
+ 
   return (
     <div>
       <section className="bg-white p-5 dark:bg-gray-800">
       <div className="flex justify-center items-center max-h-screen">
         <div className="hidden bg-cover h-100 rounded-lg lg:block lg:w-2/5" style={{backgroundImage: "url('https://i0.wp.com/guiden.id/wp-content/uploads/2021/09/image-62.png?fit=722%2C674&ssl=1')"}}>
         </div>
-
+ 
         <div className="flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5">
             <div className="w-full">
                 <h1 className="text-2xl font-semibold tracking-wider text-gray-800 capitalize dark:text-white">
                     RSVP NOW!
                 </h1>
-
+ 
                 <p className="mt-4 text-gray-500 dark:text-gray-400">
                     Let’s get you all set up so you can verify your personal account and begin setting up your profile.
                 </p>
@@ -82,19 +89,19 @@ console.log(qrcode64);
               required
             />
           </div>
-
+ 
           <div>
             <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">ID Card</label>
             <input
               type="Number"
               placeholder="16 Digit ID"
               className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-              value={nik}
-              onChange={(e) => setNik(e.target.value)}
+              value={id}
+              onChange={(e) => setId(e.target.value)}
               required
             />
           </div>
-
+ 
           <div>
             <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Phone Number</label>
             <div className="relative flex items-center text-gray-400 ">
@@ -105,13 +112,13 @@ console.log(qrcode64);
                 placeholder="812345678910"
                 autoComplete="off"
                 className="block w-full px-5 py-3 pl-14 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring-opacity-40 focus:ring-2"
-                value={number}
-                onChange={(e) => setNumber(e.target.value)}
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
                 required
               />
             </div>
           </div>
-
+ 
           <div>
             <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Email</label>
             <input
@@ -123,13 +130,13 @@ console.log(qrcode64);
               required
             />
           </div>
-
+ 
           <div>
             <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Gender</label>
             <select
               required
               name="gender"
-              value={selectedGender}
+              value={gender}
               onChange={handleGenderChange}
               className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
             >
@@ -139,7 +146,7 @@ console.log(qrcode64);
               <option value="other">Other</option>
             </select>
           </div>
-
+ 
           <div>
             <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">Reff (optional)</label>
             <input
@@ -150,8 +157,8 @@ console.log(qrcode64);
               onChange={(e) => setReff(e.target.value)}
             />
           </div>
-
-
+ 
+ 
           <button
             type="submit"
             className="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
@@ -166,13 +173,13 @@ console.log(qrcode64);
         </div>
         </div>
           <div>
-            <div className="bg-white p-4 w-72 mx-auto" ref={qrcode64Ref}>
-              <QRCode value={nik} />
+            <div className="bg-white p-4 w-72 " ref={qrcode64Ref}>
+              <QRCode value={id} />
             </div>
           </div>
       </section>
     </div>
   );
 };
-
+ 
 export default FormInput;
