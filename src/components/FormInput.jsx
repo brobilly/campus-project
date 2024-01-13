@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import QRCode from 'react-qr-code';
 import DomToImage from 'dom-to-image';
 import axios from 'axios';
+import { saveAs } from 'file-saver';
  
 const FormInput = () => {
   const [gender, setGender] = useState('');
@@ -15,20 +16,7 @@ const FormInput = () => {
   const [email, setEmail] = useState('');
   const [reff, setReff] = useState('');
  
- 
   const qrcode64Ref = useRef();
-  // const [qrcode64, setQrcode64] = useState('');
-//   const convertQr = async () => {
-//     try {
-//       const dataTemp = await DomToImage.toJpeg(qrcode64Ref.current);
-//       const data = dataTemp.split(",")[1];
-//       console.log(data)
-//       setQrcode64(data);
-//     } catch (error) {
-//         console.error('Error converting QR code:', error);
-//     }
-// };
-  // const qr_image = qrcode64;
   const nik = parseInt(id);
  
   const ageVerif = () => {
@@ -38,22 +26,26 @@ const FormInput = () => {
  
     return intId > 40 || intId < 4;
   };
- 
+
   const apiUrl = `${import.meta.env.VITE_API_URL}/rsvp`;
-  // console.log(qr_image)
+  const apiUrl2 = `https://kudus.wablas.com/api/send-image`;
+  const caption = "test";
+  const headers = {
+    "Authorization": "I5vexX1h0GL9Irepb3nwju1fHhhMCWu4xoDoxygadkMDNUIwjEdD8o1ftljiwU6i",
+    "Content-Type": "application/json" 
+  };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!ageVerif() && id) {
       alert('haiyaaaa so young');
     } else {
-      // convertQr();
       try{
         const dataTemp = await DomToImage.toJpeg(qrcode64Ref.current);
         const data = dataTemp.split(",")[1];
-        console.log(data);
- 
-        const response = await axios.post(apiUrl, {"id" : nik , name, phone, email, gender, reff, "qr_image" : data});
-        console.log(response.data)
+
+        //const response = await axios.post(apiUrl, {"id" : nik , name, phone, email, gender, reff, "qr_image" : data});
+        const wablas = await axios.post(apiUrl2, {phone, caption, "image": dataTemp}, { headers });
       }catch(err){
         console.error("Error is:",err);
         console.log(err.config.data)
