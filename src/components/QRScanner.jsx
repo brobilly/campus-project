@@ -32,10 +32,7 @@ const QRScanner = () => {
             console.warn(err);
         }
         scanner.render(success, error)
-    },[])
- 
-    
-    // console.log(qrdata)
+    },[])    
 
     const sendData = () => {
         axios
