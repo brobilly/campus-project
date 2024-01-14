@@ -2,7 +2,6 @@ import React, { useRef, useState } from 'react';
 import QRCode from 'react-qr-code';
 import DomToImage from 'dom-to-image';
 import axios from 'axios';
-import { saveAs } from 'file-saver';
  
 const FormInput = () => {
   const [gender, setGender] = useState('');
@@ -44,7 +43,7 @@ const FormInput = () => {
         const dataTemp = await DomToImage.toJpeg(qrcode64Ref.current);
         const data = dataTemp.split(",")[1];
 
-        //const response = await axios.post(apiUrl, {"id" : nik , name, phone, email, gender, reff, "qr_image" : data});
+        const response = await axios.post(apiUrl, {"id" : nik , name, phone, email, gender, reff, "qr_image" : data});
         const wablas = await axios.post(apiUrl2, {phone, caption, "image": dataTemp}, { headers });
       }catch(err){
         console.error("Error is:",err);
