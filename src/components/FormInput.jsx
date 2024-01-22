@@ -163,8 +163,8 @@ const FormInput = () => {
         </div>
         </div>
         </div>
-          <div>
-            <div className="bg-white p-4 w-72 " ref={qrcode64Ref}>
+          <div className="mt-36 flex justify-center">
+            <div className="bg-white p-4 w-72" ref={qrcode64Ref}>
               <QRCode value={id} />
             </div>
           </div>
