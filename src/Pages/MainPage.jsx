@@ -6,7 +6,7 @@ const MainPage = () => {
     <div>
         <PremiumSponsor/>
         <Navbar/>
-        <Timer/>
+        {/* <Timer/> */}
         <Hero/>
         <Map/>
         <Gallery/>

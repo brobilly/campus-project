@@ -22,3 +22,41 @@
 .h-100{
   height: 25rem;
 }
+
+.cus-bg-1 {
+  background-image: url('./assets/Image/ccchaos.svg');
+  /* background-size: cover; */
+  background-size:auto;
+  background-repeat: no-repeat;
+  background-position-x: 10px;
+  background-position-y: -200px;
+
+}
+.cus-bg-2 {
+  background-image: url('./assets/Image/gggrain.svg');
+  background-size: cover;
+  background-position: center;
+  }
+
+.cus-bg-3 {
+  background-image: url('./assets/Image/hhholographic.webp');
+  background-size: auto;
+  background-position: center;
+  }
+.cus-bg-4 {
+  background-image: url('./assets/Image/uuundulate.svg');
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: right;
+  }
+
+  .hidden-css {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.visible-css {
+    opacity: 1;
+    transform: translateY(0);
+}

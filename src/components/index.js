@@ -10,6 +10,8 @@ import FormInput from './FormInput'
 import QRScanner from './QRScanner'
 import RequireAuth from './RequireAuth'
 import LoginForm from './LoginForm'
+import Modal from './modal'
+import TeamBody from './Team'
 export{
     Footer,
     Gallery,
@@ -22,5 +24,7 @@ export{
     FormInput,
     QRScanner,
     RequireAuth,
-    LoginForm
+    LoginForm,
+    Modal,
+    TeamBody
 }
