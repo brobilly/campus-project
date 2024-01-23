@@ -27,10 +27,10 @@ const FormInput = () => {
   };
 
   const apiUrl = `${import.meta.env.VITE_API_URL}/rsvp`;
-  const apiUrl2 = `https://kudus.wablas.com/api/send-image`;
+  const apiUrl2 = `${import.meta.env.VITE_WA_URL}/send-image`;
   const caption = "test";
   const headers = {
-    "Authorization": "I5vexX1h0GL9Irepb3nwju1fHhhMCWu4xoDoxygadkMDNUIwjEdD8o1ftljiwU6i",
+    "Authorization": `${import.meta.env.VITE_WA_AUTHOR}`,
     "Content-Type": "application/json" 
   };
   
